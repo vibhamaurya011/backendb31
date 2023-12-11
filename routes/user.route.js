@@ -34,6 +34,7 @@ userRoute.post("/login", async(req, res)=>{
             bcrypt.compare(password, user.password, async(err, result)=> {
                 if(result){
                     var token = jwt.sign({ userId: user._id }, 'masai');
+                    localStorage.setItem("Token",token)
                     res.status(200).send({"Msg":"Login Successfully", "Token":token})
                 }else{
                     res.status(200).send(err)

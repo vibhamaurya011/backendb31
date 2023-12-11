@@ -2,7 +2,7 @@ const express = require("express")
 const jwt = require("jsonwebtoken")
 
 const auth = (req, res, next)=>{
-    const token = localStorage.getItem("Token")
+    const token = req.cookies.accessToken;
     try{
         jwt.verify(token, 'masai', async(err, decoded)=> {
             if(decoded){
